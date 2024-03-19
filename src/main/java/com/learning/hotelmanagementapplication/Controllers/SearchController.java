@@ -9,10 +9,7 @@ import com.learning.hotelmanagementapplication.Services.SearchService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/search")
@@ -46,5 +43,15 @@ public class SearchController {
         Page<Hotel> hotels = searchService.searchHotelByCity(requestDTO.getQuery(),
                 requestDTO.getPageSize(), requestDTO.getPageNumber(), requestDTO.getSortValue());
         return new ResponseEntity<>(hotels, HttpStatus.OK);
+    }
+
+    @GetMapping("/hotel")
+    public ResponseEntity<Page<RoomResponseDTO>> searchRoomByHotelNameAndRoomType(@RequestParam String hotelName,
+                                                                                  @RequestParam String roomType,
+                                                                                  @RequestParam int pageSize,
+                                                                                  @RequestParam int pageNumber){
+        Page<RoomResponseDTO> responseDTOPage = searchService.searchRoomsByHotelNameAndRoomType(hotelName, roomType,
+                pageSize,pageNumber);
+        return new ResponseEntity<>(responseDTOPage, HttpStatus.OK);
     }
 }

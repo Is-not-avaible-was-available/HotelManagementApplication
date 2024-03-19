@@ -8,6 +8,8 @@ import com.learning.hotelmanagementapplication.Repositories.HotelRepository;
 import com.learning.hotelmanagementapplication.Repositories.RoomRepository;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -62,5 +64,17 @@ public class SearchService {
                 .withSort(Sort.by(sortValue).descending());
 
         return hotelRepository.findAllByCityContaining(city, pageable);
+    }
+
+    public Page<RoomResponseDTO> searchRoomsByHotelNameAndRoomType( String hotelName,
+                                                         String roomType, int pageSize,
+                                                        int pageNumber){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+
+        Page<Room> roomPage = roomRepository.findAllByRoomType_RoomTypeAndHotel_Name(roomType, hotelName, pageable);
+        List<RoomResponseDTO> roomResponseDTOS = roomPage.stream().map(Mappers::convertToResponseDTO).toList();
+
+        return new PageImpl<>(roomResponseDTOS, roomPage.getPageable(),
+                roomPage.getTotalPages());
     }
 }

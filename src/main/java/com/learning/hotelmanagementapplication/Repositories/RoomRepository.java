@@ -16,5 +16,6 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     List<Room> findAllByHotel_Name(String  name);
 
     Page<Room> findAllByHotel_Name(String hotelName, Pageable pageable);
+    Page<Room> findAllByRoomType_RoomTypeAndHotel_Name(String roomType,String hotelName, Pageable pageable);
     Page<Room> findAllByRoomType_RoomType(String roomType, Pageable pageable);
 }
