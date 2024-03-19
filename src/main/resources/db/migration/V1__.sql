@@ -5,9 +5,11 @@ CREATE TABLE booking
     last_modified_at datetime              NULL,
     reference_number VARCHAR(255)          NULL,
     user_id          BIGINT                NULL,
-    booking_status   TINYINT              NULL,
+    booking_status   tinyint              NULL,
     hotel_id         BIGINT                NULL,
     room_id          BIGINT                NULL,
+    check_in_date    date                  NULL,
+    check_out_date   date                  NULL,
     CONSTRAINT pk_booking PRIMARY KEY (id)
 );
 
@@ -29,8 +31,8 @@ CREATE TABLE room
     last_modified_at datetime              NULL,
     room_number      INT                   NOT NULL,
     capacity         INT                   NOT NULL,
-    room_status      tinyint              NULL,
-    room_type        Tinyint              NULL,
+    room_status      Tinyint             NULL,
+    room_type        TINYINT              NULL,
     hotel_id         BIGINT                NULL,
     CONSTRAINT pk_room PRIMARY KEY (id)
 );
@@ -42,7 +44,7 @@ CREATE TABLE session
     last_modified_at datetime              NULL,
     token            VARCHAR(500)          NULL,
     user_id          BIGINT                NULL,
-    session_status   Tinyint              NULL,
+    session_status   TINYINT              NULL,
     expired_at       datetime              NULL,
     CONSTRAINT pk_session PRIMARY KEY (id)
 );
@@ -56,7 +58,7 @@ CREATE TABLE users
     email            VARCHAR(255)          NULL,
     password         VARCHAR(255)          NULL,
     mobile           VARCHAR(255)          NULL,
-    user_type        Tinyint              NULL,
+    user_type        TINYINT              NULL,
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
 

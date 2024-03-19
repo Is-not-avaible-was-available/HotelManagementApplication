@@ -15,6 +15,6 @@ public class Hotel extends BaseModel{
     private String name;
     private String address;
     private double rating;
-    @OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
     private List<Room>  rooms;
 }
