@@ -21,7 +21,7 @@ public class HotelService {
         this.roomRepository = roomRepository;
     }
 
-    public void addNewHotel(String name, String address) throws AlreadyPresentException {
+    public void addNewHotel(String name, String address, String city) throws AlreadyPresentException {
         Optional<Hotel> optionalHotel = hotelRepository.findByName(name);
         if(optionalHotel.isPresent()){
             throw new AlreadyPresentException("Hotel already present!");
@@ -30,6 +30,7 @@ public class HotelService {
         hotel.setAddress(address);
         hotel.setName(name);
         hotel.setRating(10.0);
+        hotel.setCity(city);
 
         hotelRepository.save(hotel);
     }
@@ -47,7 +48,8 @@ public class HotelService {
         return hotelOptional.get();
     }
 
-    public Hotel updateHotelDetails(String name, String address, double rating, Long id) throws NotFoundException{
+    public Hotel updateHotelDetails(String name, String address, double rating, Long id,
+                                    String city) throws NotFoundException{
         Optional<Hotel> optionalHotel = hotelRepository.findByName(name);
         if(optionalHotel.isEmpty()){
             throw new NotFoundException("Not found!");
@@ -57,7 +59,7 @@ public class HotelService {
         hotel.setRating(rating);
         hotel.setName(name);
         hotel.setAddress(address);
-
+        hotel.setCity(city);
         return hotelRepository.save(hotel);
     }
 }

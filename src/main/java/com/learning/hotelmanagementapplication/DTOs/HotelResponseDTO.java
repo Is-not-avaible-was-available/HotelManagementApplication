@@ -9,4 +9,5 @@ public class HotelResponseDTO {
     private String name;
     private String address;
     private double rating;
+    private String city;
 }

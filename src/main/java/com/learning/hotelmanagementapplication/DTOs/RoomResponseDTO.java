@@ -12,6 +12,6 @@ public class RoomResponseDTO {
 
     private int roomNumber;
     private int capacity;
-    private RoomType roomType;
+    private String roomType;
     private RoomStatus roomStatus;
 }

@@ -1,13 +1,12 @@
 package com.learning.hotelmanagementapplication.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,11 +18,14 @@ public class Room extends BaseModel{
     private int capacity;
     @Enumerated(value = EnumType.ORDINAL)
     private RoomStatus roomStatus;
-    @Enumerated(value = EnumType.ORDINAL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private RoomType roomType;
     @ManyToOne
     private Hotel hotel;
-
+    @OneToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST, CascadeType.REMOVE
+    })
+    private List<Booking> bookings;
     public Room() {
 
     }

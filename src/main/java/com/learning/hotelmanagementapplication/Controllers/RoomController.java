@@ -1,5 +1,6 @@
 package com.learning.hotelmanagementapplication.Controllers;
 
+import com.learning.hotelmanagementapplication.DTOs.CreateRoomTypeRequestDTO;
 import com.learning.hotelmanagementapplication.DTOs.RoomRequestDTO;
 import com.learning.hotelmanagementapplication.DTOs.RoomResponseDTO;
 import com.learning.hotelmanagementapplication.Exceptions.AlreadyPresentException;
@@ -68,5 +69,16 @@ public class RoomController {
         List<RoomResponseDTO> roomResponseDTOS = roomService.getRoomsByHotelName(HotelName);
 
         return new ResponseEntity<>(roomResponseDTOS, HttpStatus.OK);
+    }
+
+    @PostMapping("/roomType")
+    public ResponseEntity<String> createRoomType(@RequestBody CreateRoomTypeRequestDTO requestDTO){
+        try {
+            roomService.createRoomType(requestDTO.getRoomType(), requestDTO.getPrice());
+        } catch (NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>("RoomType created!", HttpStatus.CREATED);
     }
 }

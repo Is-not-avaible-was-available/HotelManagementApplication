@@ -27,7 +27,7 @@ public class HotelController {
 
         try {
             hotelService.addNewHotel(requestDTO.getName(),
-                    requestDTO.getAddress());
+                    requestDTO.getAddress(), requestDTO.getCity());
         } catch (AlreadyPresentException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +48,7 @@ public class HotelController {
         Hotel hotel = null;
         try {
             hotel= hotelService.updateHotelDetails(requestDTO.getName(), requestDTO.getAddress(),
-                    requestDTO.getRating(), hotelId);
+                    requestDTO.getRating(), hotelId, requestDTO.getCity());
         } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }

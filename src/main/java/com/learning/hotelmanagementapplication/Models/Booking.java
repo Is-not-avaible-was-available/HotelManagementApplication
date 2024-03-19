@@ -21,4 +21,6 @@ public class Booking extends BaseModel{
     private Room room;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
+    private Integer price;
+
 }

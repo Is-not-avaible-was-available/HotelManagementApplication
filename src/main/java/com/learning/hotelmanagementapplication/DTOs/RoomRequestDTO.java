@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class RoomRequestDTO {
     private int roomNumber;
-    private RoomType roomType;
+    private String roomType;
     private int capacity;
     private RoomStatus roomStatus;
     private Long hotelId;

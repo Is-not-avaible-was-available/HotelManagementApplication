@@ -1,8 +1,10 @@
 package com.learning.hotelmanagementapplication.Services;
 
+import com.learning.hotelmanagementapplication.DTOs.BookingResponseDTO;
 import com.learning.hotelmanagementapplication.DTOs.HotelResponseDTO;
 import com.learning.hotelmanagementapplication.DTOs.RoomResponseDTO;
 import com.learning.hotelmanagementapplication.DTOs.UserResponseDTO;
+import com.learning.hotelmanagementapplication.Models.Booking;
 import com.learning.hotelmanagementapplication.Models.Hotel;
 import com.learning.hotelmanagementapplication.Models.Room;
 import com.learning.hotelmanagementapplication.Models.User;
@@ -15,7 +17,7 @@ public class Mappers {
         RoomResponseDTO roomResponseDTO = new RoomResponseDTO();
         roomResponseDTO.setRoomStatus(room.getRoomStatus());
         roomResponseDTO.setRoomNumber(room.getRoomNumber());
-        roomResponseDTO.setRoomType(room.getRoomType());
+        roomResponseDTO.setRoomType(room.getRoomType().getRoomType());
         roomResponseDTO.setCapacity(room.getCapacity());
         return roomResponseDTO;
     }
@@ -35,5 +37,16 @@ public class Mappers {
         userResponseDTO.setUserType(user.getUserType());
         userResponseDTO.setMobile(user.getMobile());
         return userResponseDTO;
+    }
+
+    public static BookingResponseDTO convertToBookingResponseDTO(Booking booking){
+        BookingResponseDTO bookingResponseDTO = new BookingResponseDTO();
+        bookingResponseDTO.setCheckOutDate(booking.getCheckOutDate());
+        bookingResponseDTO.setCheckInDate(booking.getCheckInDate());
+        bookingResponseDTO.setReferenceId(booking.getReferenceNumber());
+        bookingResponseDTO.setUserName(booking.getUser().getName());
+        bookingResponseDTO.setMobile(booking.getUser().getMobile());
+        bookingResponseDTO.setPrice(booking.getPrice());
+        return bookingResponseDTO;
     }
 }

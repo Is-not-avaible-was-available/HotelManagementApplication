@@ -12,4 +12,5 @@ public class UpdateHotelRequestDTO {
     private String address;
     private double rating;
     List<Long> roomIds;
+    private String city;
 }

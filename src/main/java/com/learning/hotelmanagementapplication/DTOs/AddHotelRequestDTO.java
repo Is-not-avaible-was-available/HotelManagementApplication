@@ -10,4 +10,5 @@ import java.util.List;
 public class AddHotelRequestDTO {
     private String name;
     private String address;
+    private String city;
 }
