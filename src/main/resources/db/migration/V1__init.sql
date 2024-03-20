@@ -26,12 +26,6 @@ CREATE TABLE hotel
     CONSTRAINT pk_hotel PRIMARY KEY (id)
 );
 
-CREATE TABLE hotel_rooms
-(
-    hotel_id BIGINT NOT NULL,
-    rooms_id BIGINT NOT NULL
-);
-
 CREATE TABLE room
 (
     id               BIGINT AUTO_INCREMENT NOT NULL,
@@ -68,7 +62,7 @@ CREATE TABLE session
     last_modified_at datetime              NULL,
     token            VARCHAR(500)          NULL,
     user_id          BIGINT                NULL,
-    session_status   TINYINT              NULL,
+    session_status   Tinyint              NULL,
     expired_at       datetime              NULL,
     CONSTRAINT pk_session PRIMARY KEY (id)
 );
@@ -85,9 +79,6 @@ CREATE TABLE users
     user_type        Tinyint              NULL,
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
-
-ALTER TABLE hotel_rooms
-    ADD CONSTRAINT uc_hotel_rooms_rooms UNIQUE (rooms_id);
 
 ALTER TABLE room_bookings
     ADD CONSTRAINT uc_room_bookings_bookings UNIQUE (bookings_id);
@@ -112,12 +103,6 @@ ALTER TABLE room
 
 ALTER TABLE session
     ADD CONSTRAINT FK_SESSION_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
-
-ALTER TABLE hotel_rooms
-    ADD CONSTRAINT fk_hotroo_on_hotel FOREIGN KEY (hotel_id) REFERENCES hotel (id);
-
-ALTER TABLE hotel_rooms
-    ADD CONSTRAINT fk_hotroo_on_room FOREIGN KEY (rooms_id) REFERENCES room (id);
 
 ALTER TABLE room_bookings
     ADD CONSTRAINT fk_rooboo_on_booking FOREIGN KEY (bookings_id) REFERENCES booking (id);

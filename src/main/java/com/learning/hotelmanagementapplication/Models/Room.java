@@ -23,12 +23,11 @@ public class Room extends BaseModel{
     private RoomType roomType;
 
     @ManyToOne(cascade = {
-            CascadeType.PERSIST, CascadeType.REMOVE
-    })
+            CascadeType.PERSIST, CascadeType.REMOVE,
+    }, fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = {
+    @OneToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.PERSIST, CascadeType.REMOVE
     })
     private List<Booking> bookings;

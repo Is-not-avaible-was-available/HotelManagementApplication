@@ -22,7 +22,7 @@ public class Mappers {
         return roomResponseDTO;
     }
 
-    public HotelResponseDTO convertToResponseDTO(Hotel hotel){
+    public static HotelResponseDTO convertToResponseDTO(Hotel hotel){
         HotelResponseDTO hotelResponseDTO = new HotelResponseDTO();
         hotelResponseDTO.setAddress(hotel.getAddress());
         hotelResponseDTO.setName(hotel.getName());

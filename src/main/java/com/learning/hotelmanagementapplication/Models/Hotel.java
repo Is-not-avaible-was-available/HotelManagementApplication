@@ -15,8 +15,7 @@ public class Hotel extends BaseModel{
     private double rating;
     @OneToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST, CascadeType.REMOVE
-    })
-
+    }, mappedBy = "hotel")
     private List<Room>  rooms;
     private String city;
 }
