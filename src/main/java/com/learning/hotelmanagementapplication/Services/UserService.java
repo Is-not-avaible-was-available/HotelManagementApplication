@@ -4,6 +4,7 @@ import com.learning.hotelmanagementapplication.DTOs.UserResponseDTO;
 import com.learning.hotelmanagementapplication.Exceptions.NotFoundException;
 import com.learning.hotelmanagementapplication.Models.User;
 import com.learning.hotelmanagementapplication.Repositories.UserRepository;
+import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -27,4 +28,5 @@ public class UserService {
         User user = optionalUser.get();
         return Mappers.convertToResponseDTO(user);
     }
+
 }

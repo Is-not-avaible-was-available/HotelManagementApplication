@@ -27,6 +27,7 @@ public class Mappers {
         hotelResponseDTO.setAddress(hotel.getAddress());
         hotelResponseDTO.setName(hotel.getName());
         hotelResponseDTO.setRating(hotel.getRating());
+        hotelResponseDTO.setCity(hotel.getCity());
         return hotelResponseDTO;
     }
 
