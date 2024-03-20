@@ -26,7 +26,7 @@ public class RoomController {
     public ResponseEntity<String> addNewRoom(@RequestBody RoomRequestDTO requestDTO){
         try {
             roomService.addNewRoom(requestDTO.getRoomNumber(),requestDTO.getRoomType(),
-                    requestDTO.getCapacity(), requestDTO.getHotelId());
+                    requestDTO.getHotelId());
         } catch (AlreadyPresentException | NotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +38,7 @@ public class RoomController {
                                   @PathVariable("roomId") Long id){
 
         try {
-            roomService.updateRoomDetails(requestDTO.getRoomNumber(), requestDTO.getCapacity(),
+            roomService.updateRoomDetails(requestDTO.getRoomNumber(),
                     requestDTO.getRoomType(), requestDTO.getRoomStatus(), id);
         } catch (NotFoundException e) {
             throw new RuntimeException(e);
@@ -74,7 +74,7 @@ public class RoomController {
     @PostMapping("/roomType")
     public ResponseEntity<String> createRoomType(@RequestBody CreateRoomTypeRequestDTO requestDTO){
         try {
-            roomService.createRoomType(requestDTO.getRoomType(), requestDTO.getPrice());
+            roomService.createRoomType(requestDTO.getRoomType(), requestDTO.getPrice(), requestDTO.getCapacity());
         } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }

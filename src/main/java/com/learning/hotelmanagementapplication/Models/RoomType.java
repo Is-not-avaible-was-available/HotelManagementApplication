@@ -14,6 +14,5 @@ import lombok.Setter;
 public class RoomType extends BaseModel{
     private String roomType;
     private Integer price;
-
-
+    private Integer capacity;
 }

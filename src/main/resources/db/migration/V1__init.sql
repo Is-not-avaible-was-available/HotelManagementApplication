@@ -38,7 +38,6 @@ CREATE TABLE room
     created_at       datetime              NULL,
     last_modified_at datetime              NULL,
     room_number      INT                   NOT NULL,
-    capacity         INT                   NOT NULL,
     room_status      Tinyint              NULL,
     room_type_id     BIGINT                NULL,
     hotel_id         BIGINT                NULL,
@@ -58,6 +57,7 @@ CREATE TABLE room_type
     last_modified_at datetime              NULL,
     room_type        VARCHAR(255)          NULL,
     price            INT                   NULL,
+    capacity         INT                   NULL,
     CONSTRAINT pk_roomtype PRIMARY KEY (id)
 );
 
@@ -68,7 +68,7 @@ CREATE TABLE session
     last_modified_at datetime              NULL,
     token            VARCHAR(500)          NULL,
     user_id          BIGINT                NULL,
-    session_status   tinyint              NULL,
+    session_status   TINYINT              NULL,
     expired_at       datetime              NULL,
     CONSTRAINT pk_session PRIMARY KEY (id)
 );
@@ -82,7 +82,7 @@ CREATE TABLE users
     email            VARCHAR(255)          NULL,
     password         VARCHAR(255)          NULL,
     mobile           VARCHAR(255)          NULL,
-    user_type        tinyint              NULL,
+    user_type        Tinyint              NULL,
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
 
@@ -108,7 +108,7 @@ ALTER TABLE room
     ADD CONSTRAINT FK_ROOM_ON_HOTEL FOREIGN KEY (hotel_id) REFERENCES hotel (id);
 
 ALTER TABLE room
-    ADD CONSTRAINT FK_ROOM_ON_ROOM_TYPE FOREIGN KEY (room_type_id) REFERENCES room_type (id);
+    ADD CONSTRAINT FK_ROOM_ON_ROOMTYPE FOREIGN KEY (room_type_id) REFERENCES room_type (id);
 
 ALTER TABLE session
     ADD CONSTRAINT FK_SESSION_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);

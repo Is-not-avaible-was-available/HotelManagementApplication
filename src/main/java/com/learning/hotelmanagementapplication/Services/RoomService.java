@@ -28,7 +28,7 @@ public class RoomService {
         this.roomTypeRepository = roomTypeRepository;
     }
 
-    public void addNewRoom(int roomNumber, String roomType, int capacity, Long hotelId) throws AlreadyPresentException, NotFoundException {
+    public void addNewRoom(int roomNumber, String roomType, Long hotelId) throws AlreadyPresentException, NotFoundException {
 
         Optional<Hotel> optionalHotel=hotelRepository.findById(hotelId);
         if(optionalHotel.isEmpty()){
@@ -49,19 +49,18 @@ public class RoomService {
         }else{
             roomType1 = roomTypeOptional.get();
         }
-
         Room room = Room
                 .builder()
                 .roomStatus(RoomStatus.AVAILABLE)
                 .roomType(roomType1)
                 .roomNumber(roomNumber)
-                .capacity(capacity).hotel(hotel)
+                .hotel(hotel)
                 .build();
 
         Room savedRoom = roomRepository.save(room);
     }
 
-    public void updateRoomDetails(int roomNumber, int capacity, String roomType,
+    public void updateRoomDetails(int roomNumber, String roomType,
                                   RoomStatus  roomStatus, Long roomId) throws NotFoundException {
 
         Optional<Room> roomOptional = roomRepository.findById(roomId);
@@ -80,7 +79,6 @@ public class RoomService {
         }
         Room room= new Room();
         room.setRoomNumber(roomNumber);
-        room.setCapacity(capacity);
         room.setRoomStatus(roomStatus);
         room.setRoomType(roomType1);
 
@@ -115,13 +113,13 @@ public class RoomService {
                 .toList();
     }
 
-    public void createRoomType(String roomType, Integer price) throws NotFoundException{
+    public void createRoomType(String roomType, Integer price, Integer capacity) throws NotFoundException{
 
         Optional<RoomType> roomTypeOptional = roomTypeRepository.findByRoomType(roomType);
         if(roomTypeOptional.isPresent()){
             throw new NotFoundException("Already present!");
         }
-        RoomType roomType1 = new RoomType(roomType, price);
+        RoomType roomType1 = new RoomType(roomType, price,capacity);
 
         roomTypeRepository.save(roomType1);
     }

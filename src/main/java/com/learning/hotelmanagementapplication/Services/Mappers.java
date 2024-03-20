@@ -18,7 +18,7 @@ public class Mappers {
         roomResponseDTO.setRoomStatus(room.getRoomStatus());
         roomResponseDTO.setRoomNumber(room.getRoomNumber());
         roomResponseDTO.setRoomType(room.getRoomType().getRoomType());
-        roomResponseDTO.setCapacity(room.getCapacity());
+        roomResponseDTO.setCapacity(room.getRoomType().getCapacity());
         return roomResponseDTO;
     }
 

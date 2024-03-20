@@ -8,4 +8,5 @@ import lombok.Setter;
 public class CreateRoomTypeRequestDTO {
     private String roomType;
     private Integer price;
+    private Integer capacity;
 }

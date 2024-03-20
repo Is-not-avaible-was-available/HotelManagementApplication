@@ -15,13 +15,19 @@ import java.util.List;
 @AllArgsConstructor
 public class Room extends BaseModel{
     private int roomNumber;
-    private int capacity;
     @Enumerated(value = EnumType.ORDINAL)
     private RoomStatus roomStatus;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "roomType_id")
     private RoomType roomType;
-    @ManyToOne
+
+    @ManyToOne(cascade = {
+            CascadeType.PERSIST, CascadeType.REMOVE
+    })
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST, CascadeType.REMOVE
     })

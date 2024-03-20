@@ -1,9 +1,6 @@
 package com.learning.hotelmanagementapplication.Models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +16,7 @@ public class Hotel extends BaseModel{
     @OneToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST, CascadeType.REMOVE
     })
+
     private List<Room>  rooms;
     private String city;
 }
